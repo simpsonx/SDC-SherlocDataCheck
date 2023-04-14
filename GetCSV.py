@@ -13,7 +13,6 @@ from retrying import retry
 import os
 
 
-
 # 解析链接
 def parse(urlink, urllist, namelist):
     root = 'https://pds-geosciences.wustl.edu'
@@ -46,12 +45,6 @@ def CheckCSV(name, path):
     return bool(1)
 
 
-
-
-
-
-
-
 if __name__ == '__main__':
     # 给定一个初始的url
 
@@ -64,15 +57,14 @@ if __name__ == '__main__':
     with open('urllist.txt', 'w') as f:
         f.writelines(urllist)
         f.close()
-    fullen = len(namelist)
+    lenth = len(namelist)
     for n, i in enumerate(urllist):
         if CheckCSV(namelist[n], path):
             getCSV(i, path)
-        print(" %d/%d" % (n, fullen) )
+        print(" %d/%d" % (n, lenth))
     # 这一模式下不需要下载CSV文件直接进行处理
     # for i,key in enumerate(urllist):
     #     df1,df2=CSVtoData(key)
     #     findpeaks(df1.values,namelist[i])
     #     findpeaks(df2.values,namelist[i])
     # 已经下载完CSV后进行读取
-
